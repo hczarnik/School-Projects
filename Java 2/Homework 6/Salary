@@ -1,0 +1,107 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 6
+ *  Problem: 1
+ *  Description: This program gets a file name from the user and use 2 
+ *  try-catch blocks to handle FileNotFoundExceptions and any other exception.
+ *
+ *  Input: User inputs the URL of a file
+ *  Output: Outputs salaries (Same output as exercise 12.25)
+ *
+ *  Visible methods:
+ *  public static void main(String[] args){
+ *      
+ *  (Remaining methods are needed for exercise 12.25) 
+ *  
+ *  public static double getTotal(ArrayList<Double> x) {    
+ *  public static void findSalary(ArrayList<Double> professor1, ArrayList<Double> professor2, ArrayList<Double> professor3,
+        String title, double salary) { 
+ *
+ *   Remarks
+ *   -------
+ *
+ *
+ *************************************************************************/
+import java.util.*;
+import java.io.*;
+import java.net.*;
+public class Salary
+{
+    public static void main(String[] args){
+        //3 ArrayLists to store information for each type of professor
+        ArrayList<Double> assistant = new ArrayList<>();
+        ArrayList<Double> associate = new ArrayList<>();
+        ArrayList<Double> full = new ArrayList<>();
+        String userURL = ""; //used for the user's URL
+        boolean validURL = true; //used to see if the user's URL is valid
+        Scanner input = new Scanner(System.in);
+        //Read data
+        try{
+            System.out.println("Enter a file URL: ");
+            while(validURL == true){
+                java.net.URL url = new java.net.URL(input.next());
+                Scanner scan = new Scanner(url.openStream());
+                while(scan.hasNext()) {
+                    String[] data = (input.nextLine()).split(" ");
+                    findSalary(assistant, associate, full, data[2], new Double(data[3]));
+                }
+            }
+        }
+        catch (java.net.MalformedURLException ex) { //replaces FileNotFoundException since its using a URL, not a file.
+            validURL = false;
+            while(validURL == false){
+                System.out.println("URL is not valid. Enter a valid URL");
+                userURL = input.next();
+                validURL = true;
+            }
+        }
+        catch (java.io.IOException ex) {
+            System.out.println("I/O Error.");
+            System.exit(0);
+        }
+        catch(Exception ex) {
+            System.out.println("Error.");
+            ex.printStackTrace();
+            System.exit(0);
+        }
+        
+        //Rest of code is for program 12.25
+        double assistantTotal = getTotal(assistant);
+        double associateTotal = getTotal(associate);
+        double fullTotal = getTotal(full);
+        double allTotal = (assistantTotal + associateTotal + fullTotal);
+        
+        System.out.println("Totals: Assistant Professors: " + assistantTotal + ", Associate Professors: " + associateTotal +
+                            ", Full Professors: " + fullTotal + ".");
+        System.out.println("Averages: Assistant Professors: " + (assistantTotal/assistant.size()) + ",  Associate Professors: " +
+                            (associateTotal/associate.size()) +"m  Full Professors: " + (fullTotal/full.size()) +
+                            "All Professors: " + (allTotal/(assistant.size() + associate.size() + full.size())));
+    }
+    
+    public static double getTotal(ArrayList<Double> x) {
+        double total = 0;
+        for(int i = 0; i < x.size(); i++){
+            total += x.get(i);   //gets the number from the position "i" in the ArrayList "x" and adds it to "total".
+        }
+        return total;
+    }
+    
+    public static void findSalary(ArrayList<Double> professor1, ArrayList<Double> professor2, ArrayList<Double> professor3,
+        String title, double salary) {
+        if(title.equals("assistant")){
+            professor1.add(salary);
+        }
+        else if(title.equals("associate"))
+            professor2.add(salary);
+        else professor3.add(salary);
+    }
+}
+
