@@ -1,0 +1,61 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 1
+ *  Problem: 2
+ *  Description: User enters a two-dimentional array, then the program
+ *  returns the location of the largest element in the array.
+ *
+ *   Remarks
+ *   -------
+ *   
+ *
+ *************************************************************************/
+import java.util.*;
+public class locateLargest
+{
+    public static void main(String[] args){
+        int rows=0;             //used to hold the user's number of rows
+        int cols=0;             //used to hold the user's number of columns
+        int largestRow=0;       //holds the row that the largest number is located in
+        int largestCol=0;       //holds the column that the largest number is located in
+        double largestNum=0.0;  //holds the largest number
+        
+        Scanner input = new Scanner (System.in);
+        
+        //asks the user to input number of rows and columns, sets the numbers as parameters for the array
+        System.out.print("Enter the number of rows and columns, separated by a space.");
+        rows = input.nextInt();
+        cols = input.nextInt();
+        double[][] userArray = new double[rows][cols];  //creates the user's array
+        
+        //asks the user for numbers that will go into userArray
+        System.out.print("Enter numbers for the array, separated by spaces. Press enter to move to the next array.");
+        for (int i=0; i<rows; i++){
+            for (int j=0; j<cols; j++){
+                userArray[i][j]= input.nextDouble();
+            }
+        }
+        
+        //searches through each row and column to find the location of the largest number
+        for (int i=0; i<userArray.length; i++){
+            for (int j=0; j<userArray[i].length; j++){
+                if (userArray[i][j] > largestNum){
+                    largestRow= i;
+                    largestCol= j;
+                    largestNum= userArray[i][j];
+                }
+            }
+        }
+        
+        //prints the location of the largest number
+        System.out.println("The location of the largest element is at (" + (largestRow+1) + ", " + (largestCol+1) + ")");
+    }
+}
