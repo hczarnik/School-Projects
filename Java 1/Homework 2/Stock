@@ -39,7 +39,7 @@ public class Stock
     private String name;
     
     //A double data field named previousClosingPrice that stores the stock price for the previous day.
-    //A double datafield named currentPrice that stores the stock price for the current time.
+    //A double data field named currentPrice that stores the stock price for the current time.
     private static double previousClosingPrice;
     private static double currentPrice;
     
