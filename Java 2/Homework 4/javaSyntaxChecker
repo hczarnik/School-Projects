@@ -1,0 +1,96 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's book
+ *  
+ *  Homework: 4
+ *  Problem: 1
+ *  Description: Program that checks if a user inputs a valid for loop.
+ *
+ *  Input: User inputs a for loop.
+ *  Output: Displays whether or not the user's input is a valid for loop.
+ * 
+ *
+ *  Visible methods:
+ *  public static void main(String[] args){
+ *
+ *
+ *   Remarks
+ *   -------
+ *   
+ *
+ *************************************************************************/
+import java.util.*;
+public class javaSyntaxChecker
+{
+   
+    public static void main(String[] args){
+        String userString=" ";
+        String substring1=" ";
+        String substring2=" ";
+        String substring3=" ";
+        String substring4=" ";
+        String s=" "; //used to hold the variable that the user has in their for loop
+        boolean valid=true; //used to see if the user's for loop is valid
+        Scanner input = new Scanner(System.in);
+        
+        //Asks user to input a for loop, and stores it in userString
+        System.out.println("Enter a valid for loop.");
+        userString = input.nextLine();
+        
+        //separates userString into 4 substrings to determine if the user's entry is a valid for loop.
+        String[] substrings = userString.split("[\\(\\;|\\)]");
+        substring1 = substrings[0];
+        substring2 = substrings[1];
+        substring3 = substrings[2];
+        substring4 = substrings[3];
+        
+        //Splits substring2 to find what the user put as their variable name, stores it in s.
+        String[] substrings2 = substring2.split("[\\s|=]");
+        s = substrings2[1];
+        
+        
+        //substring1 must be the string "for".
+        if(substring1.trim().matches("for") == false){
+            valid=false;
+            System.out.println("Invalid for loop entry.");
+            System.exit(0);
+        }
+        
+        //substring2 must be the string "int" followed by a space,
+        //a string s (the variable name), the "=" sign, and an arbitrary string without spaces
+        //(i.e., it could be a number, a variable, etc.).
+        if(substring2.trim().matches("int" + "\\s" +s +"="+ "\\d") == false){
+            valid=false;
+            System.out.println("Invalid for loop entry.");
+            System.exit(0);
+        }
+
+        //substring3 must be a string that starts with the string s used in substring2,
+        //followed by an inequality symbol and an arbitrary string without spaces
+        //(i.e., it could be a number, a variable, etc.).
+        if(substring3.trim().matches(s+ "[<>]" +"=" + "\\w") == false){
+            valid=false;
+            System.out.println("Invalid for loop entry.");
+            System.exit(0);
+        }
+        
+        //substring4 must be a string that starts with the string s used in substring2, followed by "++" or "--"
+        if(substring4.trim().matches(s+ "[+]" + "[+]") ==false){
+           if(substring4.trim().matches(s+ "[-]" + "[-]") ==false){
+                valid=false;
+                System.out.println("Invalid for loop entry.");
+                System.exit(0);
+           }
+        }
+
+        //This code will only be executed if the user's for loop is valid
+        if(valid == true)
+            System.out.println("Valid for loop entry.");
+    }
+}
