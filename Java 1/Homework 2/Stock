@@ -1,0 +1,73 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 2
+ *  Problem: 2
+ *  Description: This program holds a company's name, stock symbol, previous
+ *  closing price, and current price, and displays the price change percentage between the
+ *  previous closing price and current price.
+ *
+ *  Input: None
+ *  Output: Displays the price change percentage.
+ *
+ *  Visible methods:
+ *  
+ *  public Stock(String symbol, String name){
+ *  public static double getChangePercent(){
+ *  public static void setPreviousClosingPrice(double previousPrice){
+ *  public void setCurrentPrice(double price){
+ *  public static void main(String[] args){
+ *
+ *
+ *   Remarks
+ *   -------
+ *
+ *
+ *************************************************************************/
+public class Stock
+{
+    //A string datafield named symbol for the stocks symbol.
+    //A string data field named name for the stocks name.
+    private String symbol;
+    private String name;
+    
+    //A double data field named previousClosingPrice that stores the stock price for the previous day.
+    //A double datafield named currentPrice that stores the stock price for the current time.
+    private static double previousClosingPrice;
+    private static double currentPrice;
+    
+    //A constructor that creates a stock with a specified symbol and name.
+    public Stock(String symbol, String name){
+        this.symbol = symbol;
+        this.name= name;
+    }
+    
+    //A method named getChangePercent that returns the percentage changed from previousClosingPrice to currentPrice.
+    public static double getChangePercent(){
+        return ((currentPrice - previousClosingPrice)/previousClosingPrice)*100;
+    }
+    
+    //Methods that are used to set the previousClosingPrice and currentPrice
+    public static void setPreviousClosingPrice(double previousPrice){
+        previousClosingPrice = previousPrice;
+    }
+    public void setCurrentPrice(double price){
+        currentPrice = price;
+    }
+    
+    //Display the price change percentage between the previous closing price and current price.
+    public static void main(String[] args){
+        Stock stock1 = new Stock ("ORCL", "Oracle Corporation");
+        stock1.setPreviousClosingPrice(34.5);
+        stock1.setCurrentPrice(34.35);
+        System.out.println("The price change percentage change from " +previousClosingPrice+ " and " +currentPrice+
+                            " is " +getChangePercent()+ "%.");
+    }
+}
