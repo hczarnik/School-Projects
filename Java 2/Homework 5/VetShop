@@ -1,0 +1,109 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 6
+ *  Problem: Part 1 and 2
+ *  Description: A large veterinarian services many pets and their owners. As new pets are added to the population of pets being serviced, their information is entered
+ *  into a at text le. Each month, the vet requests a listing of all pets sorted by their outstanding bill balance. You have to write a program to produce
+ *  a report of animals and their owners sorted by their outstanding balances from the data in the at text file, as follows.
+ *
+ *  Input:
+ *  Output:
+ *  
+ *  Visible methods:
+ *
+ *
+ *   Remarks
+ *   -------
+ *
+ *
+ *************************************************************************/
+import java.io.*;
+import java.util.*;
+class Animal
+{
+    private String ownerName;
+    private int birthYear;
+    private double billBalance;
+    private String species;
+    //Constructor
+    Animal(){}
+    Animal(String ownerName, int birthYear, double billBalance, String species){}
+    
+    //Accessor and mutator (get and set) methods
+    public String getOwnerName(){ return ownerName;}
+    public void setOwnerName(String name){ownerName = name;}
+    public int getBirthYear(){return birthYear;}
+    public void setBirthYear(int year){birthYear = year;}
+    public double getBillBalance(){return billBalance;}
+    public void setBillBalance(double balance){billBalance = balance;}
+    public String getSpecies(){return species;}
+    public void setSpecies(String typeOfAnimal){species = typeOfAnimal;}
+}
+
+class Mammal extends Animal
+{
+    private int numberOfLegs;
+    //Constructor
+    Mammal(String ownerName, int birthYear, double billBalance, String species, int numberOfLegs){
+        super(ownerName, birthYear, billBalance, species);
+        this.numberOfLegs= numberOfLegs;
+    }
+    
+    //Accessor and mutator (get and set) methods
+    public int getNumberOfLegs(){return numberOfLegs;}
+    public void setNumberOfLegs(int legs){numberOfLegs = legs;}
+}
+
+class nonMammal extends Animal
+{
+    private String bloodType;
+    //Constructor
+    nonMammal(String ownerName, int birthYear, double billBalance, String species, String bloodType){
+        super(ownerName, birthYear, billBalance, species);
+        this.bloodType= bloodType;
+    }
+    
+    //Accessor and mutator (get and set) methods
+    public String getBloodType(){return bloodType;}
+    public void setBloodType(String type){bloodType = type;}
+}
+
+public class VetShop
+{
+    static Animal[] clients = new Animal[73];
+    static File file = new File("C:\\program5.txt");
+    
+    public static void main(String[] args){
+        input();
+    }
+    
+    public static void input(){
+        int length; //used to take first number in the first line of the text file
+        String string;
+        try{
+            Scanner input = new Scanner(file);
+            length=input.nextInt();
+            while(input.hasNext()){
+                //Problems start in the for loop, cannot separate the string and place them in each parameter for the Animal object array
+                for(int i = 0; i < length; i++){
+                    //string= input.nextLine();
+                    //String[] parts = string.split(" ");
+                    //String name = parts[0];
+                    //int year = (int) parts[1];
+                    //clients[i] = (name; year );
+                }
+            }
+        }
+        catch(FileNotFoundException ex){
+            ex.printStackTrace();
+        }
+    }
+}
