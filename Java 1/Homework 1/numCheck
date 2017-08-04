@@ -1,0 +1,64 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 1
+ *  Problem: 1
+ *  Description: User enters 10 numbers, which are moved to another array,
+ *  ignoring any duplicates. Then, the 2nd array is printed.
+ *
+ *   Remarks
+ *   -------
+ *   
+ *
+ *************************************************************************/
+import java.util.*;
+public class numCheck
+{
+    public static void main(String[] args){
+        //Check to see if the user enters 10 numbers
+        if(args.length!=10){
+            System.out.println("10 numbers must be entered.");
+            System.exit(0);
+        }
+        
+        int[] userNum= new int [10];
+        int[] uniqueArray = new int [10];
+        int x=0;         //placeholder for the array position
+        int count = 0;   //will be used to control the count of x
+        
+        //Convert args array to a new int array
+        for(int i=0; i< userNum.length; i++){
+            userNum[i]= Integer.parseInt(args[i]);
+        }
+        
+        //Puts all unique numbers into an array, ignores any duplicates
+        for(int i=0; i< userNum.length; i++){
+            for (int j=0; j<i; j++){    //checks for any duplicate numbers in the array
+                if(userNum[i]==uniqueArray[j]){ //if there is a duplicate, count=1, exits loop
+                    count= 1;
+                    break;
+                }
+            }
+            if(count!=1){   //if count does not = 1, enter the number in the next position in uniqueArray 
+                uniqueArray[x] = userNum[i];
+                x++;    //increments the position for the array, since x has just been filled with a number
+            }
+            count=0;    //resets count to 0
+        }
+        
+        //Print out the number of numbers in the new array, and print the array
+        System.out.println("The following " + x + " distinct numbers were entered");
+        for(int i=0; i < x; i++){
+            System.out.print(uniqueArray[i]);
+            if((i+1) < x)   //checks to see if there is another number after this number to see if a "," is needed
+                System.out.print(", ");
+        }
+    }
+}
