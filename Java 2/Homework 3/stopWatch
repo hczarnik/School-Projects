@@ -1,0 +1,66 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 3
+ *  Problem: 1
+ *  Description: Creates a class with start and stop methods to act as a stopwatch
+ *  and calculate the total time in miliseconds.
+ *
+ *  Input: None
+ *  Output: None, will be used in another program to make an output
+ * 
+ * 
+ *  Visible methods:
+ *  public long getStartTime(){
+ *  public long getEndTime(){
+ *  StopWatch(){
+ *  public void start(){
+ *  public void stop(){
+ *  public long getElapsedTime(){
+ *
+ *   Remarks
+ *   -------
+ *   
+ *
+ *************************************************************************/
+import java.util.*;
+public class StopWatch
+{
+    //Private data fields startTime and endTime with getter methods.
+    private long startTime;
+    private long endTime;
+    
+    public long getStartTime(){
+        return startTime;
+    }
+    public long getEndTime(){
+        return endTime;
+    }
+    
+    //A no-arg constructor that initializes startTime with the current time.
+    StopWatch(){
+        startTime = System.currentTimeMillis();
+    }
+    
+    //A method named start() that resets the startTime to the current time.
+    public void start(){
+        startTime = System.currentTimeMillis();
+    }
+    
+    //A method named stop() that sets the endTime to the current time. A method named getElapsedTime()
+    //that returns the elapsed time for the stopwatch in milliseconds.
+    
+    public void stop(){
+        endTime = System.currentTimeMillis();
+    }
+    public long getElapsedTime(){
+        return endTime-startTime;
+    }
+}
