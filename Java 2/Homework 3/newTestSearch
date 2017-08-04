@@ -1,0 +1,97 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Computer Organization and Programming
+ *
+ *  Course: CPS 2231
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *
+ *  Homework: 3
+ *  Problem: Testing running times of search methods
+ *  Description: This program measures the running times of linear and
+ *               binary searches on an array of numbers.
+ *
+ *  Input: array size
+ *  Output: running times to search a number that is not in the array
+ *
+ *
+ *  Visible methods:
+ * public static void main(String[] args)
+ * public static boolean linearSearch(int[] a, int key)
+ * public static boolean binarySearch(int[] a, int key)
+ *
+ *
+ *   Remarks
+ *   -------
+ *
+ *
+ *************************************************************************/
+import java.util.*;
+
+public class newTestSearch {
+    public static void main(String[] args){
+        
+        // input array size from user
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter array size: ");
+        int size = input.nextInt();
+        System.out.println();
+        
+        // create the array (the numbers do not really matter)
+        int[] numbers = new int[size];
+        for(int i=0; i<numbers.length; i++){
+            // we want the numbers sorted for binary search
+            // so why not just the numbers 0,1,...,size-1
+            numbers[i]=i;
+        }
+        
+        //Create a stopwatch
+        StopWatch stopWatch = new StopWatch();
+        
+        //Start the stopwatch
+        stopWatch.start();
+        // linear search for size (which is not in the array)
+        linearSearch(numbers,size);
+        //Stop the stopwatch
+        stopWatch.stop();
+        
+        // display the time elapsed
+        System.out.println("The time taken by Linear Search is " + stopWatch.getElapsedTime() + " milliseconds.");
+        
+        //Start the stopwatch
+        stopWatch.start();
+        // binary search for size
+        binarySearch(numbers,size);
+        //Stop the stopwatch
+        stopWatch.stop();
+        
+        // display the time elapsed
+        System.out.println("The time taken by Binary Search is " + stopWatch.getElapsedTime() + " milliseconds.");
+    }
+
+    public static boolean linearSearch(int[] a, int key) {
+        for(int i=0; i<a.length; i++){
+            if(a[i]==key) return true;
+        }
+        return false;
+    }
+        
+    public static boolean binarySearch(int[] a, int key) {
+        int low = 0;
+        int high = a.length -1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (a[mid]>key) {
+                high = mid - 1;
+            } else if (a[mid]<key) {
+                low = mid + 1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+}
