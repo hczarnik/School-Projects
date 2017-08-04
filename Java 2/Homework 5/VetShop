@@ -11,7 +11,7 @@
  *  Homework: 6
  *  Problem: Part 1 and 2
  *  Description: A large veterinarian services many pets and their owners. As new pets are added to the population of pets being serviced, their information is entered
- *  into a at text le. Each month, the vet requests a listing of all pets sorted by their outstanding bill balance. You have to write a program to produce
+ *  into a text file. Each month, the vet requests a listing of all pets sorted by their outstanding bill balance. You have to write a program to produce
  *  a report of animals and their owners sorted by their outstanding balances from the data in the at text file, as follows.
  *
  *  Input:
