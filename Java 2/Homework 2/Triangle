@@ -1,0 +1,103 @@
+/*************************************************************************
+ *
+ *  Kean University
+ *  Spring 2016
+ *  Data Structures and Algorithms
+ *
+ *  Course: CPS 2231-02
+ *  Author: Hunter Czarnik
+ *  References: Liang's Book
+ *  
+ *  Homework: 2
+ *  Problem: 1
+ *  Description: This program will display sides, area, and perimeter of
+ *  a triangle with the sides 3, 4 and 5.
+ *
+ *  Input: None
+ *  Output: Displays the sides, area, and perimeter of the triangle
+ *
+ *  Visible methods:
+ *  
+ *  Triangle(){}
+ *  Triangle(double x, double y, double z){
+ *  public boolean setA(double newA){
+ *  public boolean setB(double newB){
+ *  public boolean setC(double newC){
+ *  public static double getArea(){
+ *  public static double getPerimeter(){
+ *  public static void main(String[] args){
+ *
+ *
+ *   Remarks
+ *   -------
+ *
+ *
+ *************************************************************************/
+import java.util.*;
+public class Triangle
+{
+    //Three double data fields named a, b,and c that specify the sides of the triangle.
+    //Default values are 1.
+    private static double a = 1;
+    private static double b = 1;
+    private static double c = 1;
+    
+    //A no-arguments constructor that creates a default triangle.
+    Triangle(){}
+    
+    //A constructor that creates a triangle with the specified sides, provided that they are all positive
+    //and preserve the triangle inequality. Otherwise, stops the program.
+    Triangle(double x, double y, double z){
+        if ((x + y > z) && (x + z > y) && (y + z > x)){
+            setA(x);
+            setB(y);
+            setC(z);
+        }
+        else{
+            System.out.println("Invalid numbers. Program will exit.");
+            System.exit(0);
+        }
+    }
+    
+    //Makes sure the numbers set for a, b and c are positive. If they are, the value for the variable is changed.
+    public boolean setA(double newA){
+        if(newA>0){
+            a = newA;
+            return true;
+        }
+        else return false;
+    }
+    public boolean setB(double newB){
+        if(newB>0){
+            b = newB;
+            return true;
+        }
+        else return false;
+    }
+    public boolean setC(double newC){
+        if(newC>0){
+            c = newC;
+            return true;
+        }
+        else return false;
+    }
+    
+    //A method named getArea that returns the area of this triangle.
+    public static double getArea(){
+       double perimeter=(getPerimeter())/2;
+       return Math.sqrt(perimeter*(perimeter-a)*(perimeter-b)*(perimeter-c));
+    }
+    
+    //A method named getPerimeter that returns the perimeter of this triangle
+    public static double getPerimeter(){
+        return (a+b+c);
+    }
+    
+    //create a triangle with sides 3, 4 and 5, display the sides, area and perimeter.
+    public static void main(String[] args){
+        Triangle T1 = new Triangle(3.0, 4.0, 5.0);
+        System.out.println("The sides of the triangle are " + a + ", " + b + ", "+ c + ".");
+        System.out.println("The area of the triangle is " +getArea()+ ".");
+        System.out.println("The perimeter of the triangle is " +getPerimeter()+ ".");
+    }
+}
