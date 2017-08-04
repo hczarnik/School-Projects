@@ -1,0 +1,109 @@
+import java.util.*;
+import java.io.*;
+
+/*
+ *  Hunter Czarnik
+ *  CPS 2232
+ *  Project 1
+ *  Due: 10/27/16
+ *  
+ *  Description: This project takes a file that lists a student's name, birthday, number of classes, etc.
+ *  and puts the information in an Array List.
+ */
+ 
+public class Student extends StudentList
+{
+    ArrayList<Student> students = new ArrayList<Student>(); //creates an ArrayList of students
+
+    Student(){}
+    Student(String file){
+        filename = file;
+    }
+    Student(String studentName, int birthdayMonth, int birthdayDay, int birthdayYear){
+        name = studentName;
+        birthMonth = birthdayMonth;
+        birthDay = birthdayDay;
+        birthYear = birthdayYear;
+    }
+
+     public void scanFile(){
+        File f = new File(this.filename);
+        try{
+            Scanner input = new Scanner(f);
+            int classCounter = input.nextInt();  //first int in the file = number of classes 
+            while(counter <= classCounter){
+                int studentCounter = input.nextInt();
+                for(int i=0; i < studentCounter; i++){
+                    name= input.next() + " " + input.next();
+                    fileMonth= input.next();
+                    birthMonth = setMonth(fileMonth); //converts the String month to an int
+                    birthDay = input.nextInt();
+                    birthYear = input.nextInt();
+                    students.add(new Student(name, birthMonth, birthDay, birthYear));
+                }
+                counter++;
+                //System.out.print(students); test
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    private int setMonth(String x){
+        //used to change the fileMonth to an int for sorting. (January = 1, February = 2, etc.)
+        if(x.equalsIgnoreCase("January")==true)
+            return 1;
+        else if(x.equalsIgnoreCase("February")==true)
+            return 2;
+        else if(x.equalsIgnoreCase("March")==true)
+            return 3;
+        else if(x.equalsIgnoreCase("April")==true)
+            return 4;
+        else if(x.equalsIgnoreCase("May")==true)
+            return 5;
+        else if(x.equalsIgnoreCase("June")==true)
+            return 6;
+        else if(x.equalsIgnoreCase("July")==true)
+            return 7;
+        else if(x.equalsIgnoreCase("August")==true)
+            return 8;
+        else if(x.equalsIgnoreCase("September")==true)
+            return 9;
+        else if(x.equalsIgnoreCase("October")==true)
+            return 10;
+        else if(x.equalsIgnoreCase("November")==true)
+            return 11;
+        else if(x.equalsIgnoreCase("December")==true)
+            return 12;
+        else return -1;
+    }
+    public static void main(String...strings){
+        //initializes scanner, then asks for filepath
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the name of the file to be scanned (include file path): "); //asks user to input the file and filepath
+        String filepath = input.next();
+        Student student2 = new Student(filepath); // creates a new Student with the user's filepath
+        student2.scanFile();    //scans the file
+    }
+}
+
+class StudentList
+{
+    //makes a list of students
+    ArrayList<Student> classList = new ArrayList<Student>();
+    int counter = 1; //used for output
+    String filename="";
+    String name="";
+    String fileMonth="";
+    int birthMonth, birthDay, birthYear;
+    StudentList(){}
+    StudentList(ArrayList<Student> x){
+        for(int i=0; i < x.size(); i++){ //sets all elements in x to classList
+            classList.add(x.get(i));
+        }
+    }
+   
+    public String toString(){
+        return "Name: " + name + " Birthday: " + birthMonth + " " + birthDay + " " + birthYear + ".";
+    }
+}
