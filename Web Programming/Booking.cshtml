@@ -1,0 +1,85 @@
+﻿@{
+    Page.Title = "Reservations";
+    Layout = "~/_SiteLayout.cshtml";
+}
+
+<script>
+    function reserve() {
+        //var myWindow = window.open("", "name", "width=400,height=200,left=700,top=280");
+       // myWindow.document.write(time + " " + time2);
+            var myWindow = window.open("", "name", "width=400,height=200,left=700,top=280");
+            myWindow.document.write("<p>Congratulations " + Fname.value + " " + Lname.value + "! Your room is now booked! An e-mail has been sent to " + email.value + ". </p>");
+            window.location.assign("/Default.cshtml");
+    }
+</script>
+
+<script src="~/pikaday.js"></script>
+<link href="~/css/pikaday.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<link href="~/css/theme.css" rel="stylesheet" />
+<link href="~/css/triangle.css" rel="stylesheet" />
+<hgroup class="title">
+    <h1>@Page.Title</h1>
+</hgroup>
+
+<aside>
+    <p>
+        <h5>Start Date</h5>
+        <input id="Text1" type="text" />
+        <script type="text/javascript">
+            var picker = new Pikaday(
+                {
+                    field: document.getElementById('Text1'),
+                    firstDay: 1,
+                    minDate: new Date(),
+                    maxDate: new Date('2025-12-31'),
+                    yearRange: [2000, 2020],
+                    numberOfMonths: 1,
+                    theme: 'light-theme'
+                });
+        </script>
+
+
+
+        <h5>End Date</h5>
+        <input id="Text2" type="text" />
+        <script type="text/javascript">
+            var picker2 = new Pikaday(
+                {
+                    field: document.getElementById('Text2'),
+                    firstDay: 1,
+                    minDate: new Date(),
+                    maxDate: new Date('2025-12-31'),
+                    yearRange: [2000, 2020],
+                    numberOfMonths: 1,
+                    theme: 'light-theme'
+                });
+        </script>
+        <script>
+            var d = new Date(picker);
+            var time = d.getTime();
+            var d2 = new Date(picker2);
+            var time2 = d2.getTime();
+        </script>
+
+    </p>
+</aside>
+
+    <p>
+        First
+        <input id="Fname" type="text" placeholder="John" required><br>
+        Last
+        <input id="Lname" type="text" placeholder="Smith" required><br>
+        Phone
+        <input id="contNum" type="text" pattern="[1-9]{10}" placeholder="xxxxxxxxxx"><br>
+        Email
+        <input id="email" type="email" placeholder="johnsmith@example.com" required><br>
+        Credit Card
+        <input id="credit" type="text" placeholder="XXXX - XXXX - XXXX - XXXX"><br>
+    </p>
+
+
+    <p>
+        <input id="Submit1" type="submit" value="submit" onClick="reserve()" />
+    </p>
+

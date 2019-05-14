@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Rooms";
+}
+<html>
+<head>
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+        }
+
+        .image {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #e8bb00;
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+        }
+
+        .container:hover .overlay {
+            height: 50%;
+        }
+
+        .text {
+            white-space: nowrap;
+            color: white;
+            font-size: 18px;
+            position: absolute;
+            overflow: hidden;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <!--
+        TODO: Copy for all pictures, import new pictures and change sources,
+        fix overlay color in .overlay, link to reservations
+    -->
+    <!--Plaza King-->
+    <h1>Plaza King</h1>
+    <div class="container">
+        <a href="~/Booking">
+            <img src="~/Images/plazaking.jpg" alt="Plaza King" class="image">
+        </a>
+        <div class="overlay">
+            <div class="text">
+                The Plaza King features one King bed and is located on floors 5 – 19.<br />
+                Bathroom is finished with inlaid “earth stone” mosaics and include a luxurious bathtub and separate shower.<br />
+                Among many splendid details are 24-carat gold-plated Sherle Wagner fixtures,<br />
+                as well as hand-crafted solid white marble vanities.
+            </div>
+        </div>
+    </div>
+    <br /><br /><br />
+
+    <!--Deluxe King-->
+    <h2>Deluxe King</h2>
+    <div class="container">
+        <a href="~/Booking">
+            <img src="~/Images/deluxeking.jpg" alt="Deluxe King" class="image">
+        </a>
+        <div class="overlay">
+            <div class="text">
+                The Plaza’s expansive Deluxe King has one King bed and provide 550 sq. ft. of living space.<br />
+                Bathroom is finished with inlaid “earth stone” mosaics and include a luxurious bathtub and separate shower.<br />
+                Among many splendid details are 24-carat gold-plated Sherle Wagner fixtures, as well as hand-crafted solid<br />
+                white marble vanities.
+            </div>
+        </div>
+    </div>
+    <br /><br /><br />
+
+    <!--Two Deluxe Queens-->
+    <h2>Two Deluxe Queens</h2>
+    <div class="container">
+        <a href="~/Booking">
+            <img src="~/Images/deluxetwoqueens.jpg" alt="Deluxe Two Queens" class="image">
+        </a>
+        <div class="overlay">
+            <div class="text">
+                For those seeking more spacious accommodations, Deluxe Two Queens deliver 550 sq. ft. of<br />
+                living space with double Queen beds, two comfortable armchairs, and a meticulously crafted<br />
+                writing desk. Bathroom is finished with inlaid “earth stone” mosaics and include a luxurious<br />
+                shower and separate WC. Among many splendid details include 24-carat gold-plated Sherle Wagner<br />
+                fixtures, as well as solid white marble vanities.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
